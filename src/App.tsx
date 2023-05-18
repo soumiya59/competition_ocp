@@ -1,23 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 import SignUp from './pages/Authentication/SignUp';
 import SignIn from './pages/Authentication/SignIn';
-import Chart from './pages/Chart';
 import AddArticle from './pages/Dashboard/AddArticle';
 import EditArticle from './pages/Dashboard/EditArticle';
 import ArticleList from './pages/Dashboard/ArticleList.tsx';
-import FormElements from './pages/Form/FormElements';
-import FormLayout from './pages/Form/FormLayout';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
-import Tables from './pages/Tables';
-import Alerts from './pages/UiElements/Alerts';
-import Buttons from './pages/UiElements/Buttons';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
-
   const preloader = document.getElementById('preloader');
 
   if (preloader) {
@@ -36,20 +28,12 @@ function App() {
   ) : (
     <>
       <Routes>
-        <Route path="/" element={<AddArticle />} />
+        <Route path="/" element={<ArticleList />} />
         <Route path="/articleList" element={<ArticleList />} />
-        <Route path="/editArticle/:code" element={<EditArticle />} />
-        <Route path="/addArticle" element={<AddArticle />} />
-        <Route path="/logout" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/articleEdit/:code" element={<EditArticle />} />
+        <Route path="/articleNew" element={<AddArticle />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/forms/form-elements" element={<FormElements />} />
-        <Route path="/forms/form-layout" element={<FormLayout />} />
-        <Route path="/tables" element={<Tables />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/chart" element={<Chart />} />
-        <Route path="/ui/alerts" element={<Alerts />} />
-        <Route path="/ui/buttons" element={<Buttons />} />
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
       </Routes>
