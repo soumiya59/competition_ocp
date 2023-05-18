@@ -9,7 +9,7 @@ const AddArticle = () => {
   const dispatch=useDispatch()
 
   const {code}:any = useParams();
-  const articles = useSelector(state=>state.articles)
+  const articles = useSelector((state: any)=>state.articles)
   const toUpdate = articles.find((ar:any)=> ar.code === parseInt(code))
 
   const [dataInput,setDataInput]=useState(toUpdate.info)
