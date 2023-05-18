@@ -5,7 +5,9 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 // import Calendar from './pages/Calendar';
 import Chart from './pages/Chart';
-import ECommerce from './pages/Dashboard/ECommerce';
+import AddArticle from './pages/Dashboard/AddArticle';
+import EditArticle from './pages/Dashboard/EditArticle';
+import ArticleList from './pages/Dashboard/ArticleList';
 import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
 import Profile from './pages/Profile';
@@ -35,7 +37,10 @@ function App() {
   ) : (
     <>
       <Routes>
-        <Route path="/" element={<ECommerce />} />
+        <Route path="/" element={<AddArticle />} />
+        <Route path="/articleList" element={<ArticleList />} />
+        <Route path="/editArticle" element={<EditArticle />} />
+        <Route path="/addArticle" element={<AddArticle />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forms/form-elements" element={<FormElements />} />
         <Route path="/forms/form-layout" element={<FormLayout />} />
