@@ -1,18 +1,29 @@
-import { useState } from 'react';
-import { useDispatch} from 'react-redux'
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux'
 import {update_article} from '../../slices/articleSlice.js'
 import DefaultLayout from '../../layout/DefaultLayout.js';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AddArticle = () => {
-  const code:any = useParams();
   const navigate = useNavigate();
-
   const dispatch=useDispatch()
-  const [dataInput,setDataInput]=useState({})
-  const handleChange = (e:any)=>{
-    setDataInput(prev=>({...prev,[e.target.name]:e.target.value}))
-  }
+
+  const {code}:any = useParams();
+  const articles = useSelector(state=>state.articles)
+  const toUpdate = articles.find((ar:any)=> ar.code === parseInt(code))
+
+  const [dataInput,setDataInput]=useState(toUpdate.info)
+  const [oldtitre,setTitre]=useState(toUpdate.info.titre)
+  const [oldjournal,setJournal]=useState(toUpdate.info.journal)
+  const [oldredacteur,setRedacteur]=useState(toUpdate.info.redacteur)
+  const [oldcorps,setCorps]=useState(toUpdate.info.corps)
+  const [oldtheme,setTheme]=useState(toUpdate.info.theme)
+
+  // useEffect(() => {
+  //   if (toUpdate) {
+  //     setDataInput({titre:toUpdate.info.titre});
+  //   }
+  // }, [toUpdate]);
   return (
     <DefaultLayout>
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -29,8 +40,12 @@ const AddArticle = () => {
                       Titre
                     </label>
                     <input
-                      onChange={handleChange}
+                      onChange={(e:any)=>{
+                        setDataInput((prev:any)=>({...prev,[e.target.name]:e.target.value}))
+                        setTitre(e.target.value)
+                      }}
                       name="titre"
+                      value={oldtitre}
                       type="text"
                       placeholder="Entrer le titre de l'article"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -42,8 +57,12 @@ const AddArticle = () => {
                       Nom de journal
                     </label>
                     <input
-                      onChange={handleChange}
+                      onChange={(e:any)=>{
+                        setDataInput((prev:any)=>({...prev,[e.target.name]:e.target.value}))
+                        setJournal(e.target.value)
+                      }}
                       name="journal"
+                      value={oldjournal}
                       type="text"
                       placeholder="Entrer le nom de journal"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -56,8 +75,12 @@ const AddArticle = () => {
                       Nom de Rédacteur
                     </label>
                     <input
-                      onChange={handleChange}
+                      onChange={(e:any)=>{
+                        setDataInput((prev:any)=>({...prev,[e.target.name]:e.target.value}))
+                        setRedacteur(e.target.value)
+                      }}
                       name="redacteur"
+                      value={oldredacteur}
                       type="text"
                       placeholder="Entrer le nom de rédacteur"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -69,8 +92,12 @@ const AddArticle = () => {
                     Corps d'article
                   </label>
                   <textarea
-                    onChange={handleChange}
+                      onChange={(e:any)=>{
+                        setDataInput((prev:any)=>({...prev,[e.target.name]:e.target.value}))
+                        setCorps(e.target.value)
+                      }}
                     name="corps"
+                    value={oldcorps}
                     rows={6}
                     placeholder="Entrer le Coprs de l'article"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -83,10 +110,14 @@ const AddArticle = () => {
                   </label>
                   <div className="relative z-20 bg-transparent dark:bg-form-input">
                     <select  
-                    onChange={handleChange}
+                      onChange={(e:any)=>{
+                        setDataInput((prev:any)=>({...prev,[e.target.name]:e.target.value}))
+                        setTheme(e.target.value)
+                      }}
                     name="theme"
+                    value={oldtheme}
                     className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                      <option value=""></option>
+                      <option value=''></option>
                       <option value="culture">Culture</option>
                       <option value="sport">Sport</option>
                       <option value="politique">Politique</option>

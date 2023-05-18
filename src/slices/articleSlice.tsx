@@ -18,11 +18,18 @@ const articleSlice = createSlice({
         state.splice(action.payload,1)
     },
     update_article:(state,action)=>{
-        let updatedArticle:any = {code:nanoid(), info: {...action.payload.dataInput}}
-        state.splice(action.payload.index,1)
-        state.push(updatedArticle)
-        console.log("🚀 ~ file: articleSlice.tsx:33 ~ updatedArticle:", updatedArticle)
-        console.log('updated')
+        const existingArticle = state.find((article) => article.code === parseInt( action.payload.code));
+        console.log("🚀 ~ file: articleSlice.tsx:23 ~ updatedArticle:", existingArticle)
+        if(existingArticle){
+            existingArticle.info.titre = action.payload.dataInput.titre
+            existingArticle.info.redacteur = action.payload.dataInput.redacteur
+            existingArticle.info.journal = action.payload.dataInput.journal
+            existingArticle.info.corps = action.payload.dataInput.corps
+            existingArticle.info.theme = action.payload.dataInput.theme
+        }
+        // let updatedArticle:any = {code:nanoid(), info: {...action.payload.dataInput}}
+        // state.splice(action.payload.index,1)
+        // state.push(updatedArticle)
     }
    }
 })
