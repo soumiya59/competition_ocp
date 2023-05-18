@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
-// import Calendar from './pages/Calendar';
 import Chart from './pages/Chart';
 import AddArticle from './pages/Dashboard/AddArticle';
 import EditArticle from './pages/Dashboard/EditArticle';
@@ -39,7 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AddArticle />} />
         <Route path="/articleList" element={<ArticleList />} />
-        <Route path="/editArticle" element={<EditArticle />} />
+        <Route path="/editArticle/:code" element={<EditArticle />} />
         <Route path="/addArticle" element={<AddArticle />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forms/form-elements" element={<FormElements />} />
