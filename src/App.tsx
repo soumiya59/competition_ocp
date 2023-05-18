@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
+import SignIn from './pages/Authentication/SignIn';
 import Chart from './pages/Chart';
 import AddArticle from './pages/Dashboard/AddArticle';
 import EditArticle from './pages/Dashboard/EditArticle';
-import ArticleList from './pages/Dashboard/ArticleList';
+import ArticleList from './pages/Dashboard/ArticleList.tsx';
 import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
 import Profile from './pages/Profile';
@@ -40,6 +40,8 @@ function App() {
         <Route path="/articleList" element={<ArticleList />} />
         <Route path="/editArticle/:code" element={<EditArticle />} />
         <Route path="/addArticle" element={<AddArticle />} />
+        <Route path="/logout" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forms/form-elements" element={<FormElements />} />
         <Route path="/forms/form-layout" element={<FormLayout />} />

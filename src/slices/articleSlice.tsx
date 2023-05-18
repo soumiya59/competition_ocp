@@ -18,18 +18,11 @@ const articleSlice = createSlice({
         state.splice(action.payload,1)
     },
     update_article:(state,action)=>{
-        const {titre,redacteur,journal,corps,theme} = action.payload.dataInput;
-        const existingUser:any = state.find((article) => article.code === action.payload.code);
-        if (existingUser) {
-            existingUser.info.titre = titre;
-            existingUser.info.redacteur = redacteur;
-            existingUser.info.journal = journal;
-            existingUser.info.corps = corps;
-            existingUser.info.theme = theme;
-        }
-        // let updatedArticle:any = {id:nanoid(), info: {...action.payload.dataInput}}
-        // state.splice(action.payload.index,1)
-        // state.push(updatedArticle)
+        let updatedArticle:any = {code:nanoid(), info: {...action.payload.dataInput}}
+        state.splice(action.payload.index,1)
+        state.push(updatedArticle)
+        console.log("🚀 ~ file: articleSlice.tsx:33 ~ updatedArticle:", updatedArticle)
+        console.log('updated')
     }
    }
 })

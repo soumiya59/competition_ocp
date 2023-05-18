@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useDispatch} from 'react-redux'
 import {update_article} from '../../slices/articleSlice.js'
 import DefaultLayout from '../../layout/DefaultLayout.js';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AddArticle = () => {
   const code:any = useParams();
+  const navigate = useNavigate();
 
   const dispatch=useDispatch()
   const [dataInput,setDataInput]=useState({})
@@ -85,6 +86,7 @@ const AddArticle = () => {
                     onChange={handleChange}
                     name="theme"
                     className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                      <option value=""></option>
                       <option value="culture">Culture</option>
                       <option value="sport">Sport</option>
                       <option value="politique">Politique</option>
@@ -114,7 +116,12 @@ const AddArticle = () => {
 
                 <button
                  className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray"
-                  onClick={()=>dispatch(update_article({dataInput,code}))}
+                  onClick={
+                    ()=>{
+                      dispatch(update_article({dataInput,code}))
+                      navigate('/articleList')
+                    }
+                  }
                  >
                   Enregister 
                 </button>
