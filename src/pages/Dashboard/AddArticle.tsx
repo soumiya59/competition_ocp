@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useDispatch} from 'react-redux'
 import {add_article} from '../../slices/articleSlice.js'
 import DefaultLayout from '../../layout/DefaultLayout.js';
+import { useNavigate } from 'react-router-dom';
 
 const AddArticle = () => {
   const dispatch=useDispatch()
+  const navigate=useNavigate()
   const [dataInput,setDataInput]=useState({})
   const handleChange = (e:any)=>{
     setDataInput(prev=>({...prev,[e.target.name]:e.target.value}))
@@ -111,7 +113,12 @@ const AddArticle = () => {
 
                 <button
                  className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray"
-                  onClick={()=>dispatch(add_article(dataInput))}
+                  onClick={
+                    ()=>{
+                      dispatch(add_article(dataInput))
+                      navigate('/articleList')
+                    }
+                  }
                  >
                   Ajouter 
                 </button>
