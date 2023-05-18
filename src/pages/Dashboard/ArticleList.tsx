@@ -77,7 +77,7 @@ const ArticleList = () => {
                 <div className="flex items-center space-x-3.5">
                   <button 
                   className="hover:text-primary"
-                  onClick={()=>{navigate(`/editArticle/${ar.code}`)}}
+                  onClick={()=>{navigate(`/articleEdit/${ar.code}`)}}
                   >
                     <svg
                       className="fill-current"
